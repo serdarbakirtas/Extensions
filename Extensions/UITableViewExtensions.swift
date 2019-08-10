@@ -1,10 +1,3 @@
-//
-//  UITableViewExtensions.swift
-//
-//  Created by Hasan Serdar Bakirtas on 10.08.2019.
-//  Copyright © 2019 Hasan Serdar Bakirtas. All rights reserved.
-//
-
 import UIKit
 import Foundation
 
