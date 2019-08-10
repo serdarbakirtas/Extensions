@@ -12,5 +12,11 @@ extension UIView {
         layer.borderColor = color.cgColor
     }
 
+    func roundCorners(cornerRadius: CGFloat = AppState.UI.View.cornerRadius) {
+
+        layer.cornerRadius = cornerRadius
+        layer.masksToBounds = true
+    }
+    
     
 }
