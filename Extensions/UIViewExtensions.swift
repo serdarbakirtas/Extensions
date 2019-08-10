@@ -39,5 +39,60 @@ extension UIView {
         })
     }
     
+    func animateAlpha(_ setVisible: Bool, duration: TimeInterval = 0.3) {
+        
+        if setVisible {
+            alpha = 0.0
+        }
+        
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                let alpha: CGFloat = setVisible ? 1.0 : 0.0
+                self.alpha = alpha
+        },
+            completion: { (isDoneAnimating) in
+                
+                if isDoneAnimating {
+                }
+        })
+    }
     
+    func animatePosition(_ setVisible: Bool, duration: TimeInterval = 0.3) {
+        
+        if setVisible {
+            alpha = 0.0
+            isHidden = false
+        }
+        
+        self.transform = CGAffineTransform(
+            translationX: -150,
+            y: 0)
+        
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1 ,
+            options: .curveEaseOut,
+            animations: {
+                
+                self.transform = CGAffineTransform(
+                    translationX: 0,
+                    y: 0)
+        })
+        
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                let alpha: CGFloat = setVisible ? 1.0 : 0.0
+                self.alpha = alpha
+        },
+            completion: { (isDoneAnimating) in
+                
+                if isDoneAnimating {
+                    self.isHidden = !setVisible
+                }
+        })
+    }
 }
