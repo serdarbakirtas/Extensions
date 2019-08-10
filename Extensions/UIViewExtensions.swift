@@ -96,3 +96,58 @@ extension UIView {
         })
     }
 }
+
+public extension UIView {
+    
+    /// Pins view to superview
+    ///
+    /// - Parameters:
+    ///   - insets: Edge insets (defaults to .zero)
+    ///   - shouldRespectSafeArea: Whether safe area should be respected or not (defaults to true)
+    /// - Returns: Added layout constraints array. In leading, trailing, top, bottom order
+    /// - Example: view.cuiPinToSuperView(with: UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0))
+    /// - Warning: Uses insets.left for leading and insets.right for trailing everytime (even layout direction is right to left)
+    @discardableResult
+    func cuiPinToSuperview(
+        with insets: UIEdgeInsets = .zero,
+        shouldRespectSafeArea: Bool = true
+        ) -> [NSLayoutConstraint] {
+        
+        guard superview != nil else {
+            return []
+        }
+        
+        var constraints: [NSLayoutConstraint] = []
+        
+        if let leading = cuiPinLeadingToSuperView(
+            constant: insets.left,
+            shouldRespectSafeArea: shouldRespectSafeArea
+            ) {
+            
+            constraints.append(leading)
+        }
+        
+        if let trailing = cuiPinTrailingToSuperView(
+            constant: insets.right,
+            shouldRespectSafeArea: shouldRespectSafeArea
+            ) {
+            constraints.append(trailing)
+        }
+        
+        if let top = cuiPinTopToSuperView(
+            constant: insets.top,
+            shouldRespectSafeArea: shouldRespectSafeArea
+            ) {
+            constraints.append(top)
+        }
+        
+        if let bottom = cuiPinBottomToSuperView(
+            constant: insets.bottom,
+            shouldRespectSafeArea: shouldRespectSafeArea
+            ) {
+            constraints.append(bottom)
+        }
+        
+        return constraints
+    }
+}
