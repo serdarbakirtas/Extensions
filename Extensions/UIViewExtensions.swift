@@ -183,4 +183,37 @@ public extension UIView {
             constant: constant
         )
     }
+    
+    /// Pins trailing anchor to superview's trailing anchor
+    ///
+    /// - Parameters:
+    ///   - constant: Constant to be applied between anchors
+    ///   - shouldRespectSafeArea: Whether safe area should be respected or not (defaults to true)
+    /// - Returns: Already activated `NSLayoutConstraint` instance or nil if view has no superview
+    @discardableResult
+    func cuiPinTrailingToSuperView(
+        constant: CGFloat = 0.0,
+        shouldRespectSafeArea: Bool = true
+        ) -> NSLayoutConstraint? {
+        
+        guard let superview = superview else {
+            return nil
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        guard #available(iOS 11.0, *),
+            superview.responds(to: #selector(getter: safeAreaLayoutGuide)) else {
+                
+                return trailingAnchor.cuiDock(
+                    to: superview.trailingAnchor,
+                    constant: constant
+                )
+        }
+        
+        return trailingAnchor.cuiDock(
+            to: shouldRespectSafeArea ? superview.safeAreaLayoutGuide.trailingAnchor : superview.trailingAnchor,
+            constant: constant
+        )
+    }
 }
