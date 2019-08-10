@@ -18,5 +18,26 @@ extension UIView {
         layer.masksToBounds = true
     }
     
+    func animateVisible(_ setVisible: Bool, duration: TimeInterval = 0.3) {
+        
+        if setVisible {
+            alpha = 0.0
+            isHidden = false
+        }
+        
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                let alpha: CGFloat = setVisible ? 1.0 : 0.0
+                self.alpha = alpha
+        },
+            completion: { (isDoneAnimating) in
+                
+                if isDoneAnimating {
+                    self.isHidden = !setVisible
+                }
+        })
+    }
+    
     
 }
