@@ -380,3 +380,55 @@ public extension UIView {
         layer.shadowRadius = radius
     }
 }
+
+// MARK: - Layout Helpers
+
+public extension UIView {
+    
+    /// Remove constraints from view
+    func cuiRemoveAllConstraints() {
+        
+        removeConstraints(constraints)
+        
+        if let superview = superview {
+            
+            for constraint in superview.constraints {
+                
+                if (constraint.firstItem as? UIView) == self ||
+                    (constraint.secondItem as? UIView) == self {
+                    superview.removeConstraint(constraint)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Hierarchy Helpers
+
+public extension UIView {
+    
+    /// Remove all subviews from view
+    func cuiRemoveAllSubviews() {
+        
+        subviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
+    
+    /// Return all subviews of the view
+    ///
+    /// - Returns: Subviews is generic type as `Array`
+    func cuiSubviews<T>() -> [T] {
+        return subviews.compactMap {
+            $0 as? T
+        }
+    }
+    
+    /// Return first subview of the view
+    ///
+    /// - Returns: Subview as generic type
+    func cuiFirstSubview<T>() -> T? {
+        return cuiSubviews().first
+    }
+}
+
