@@ -303,5 +303,35 @@ public extension UIView {
         return constraints
     }
     
+    /// Centers view horizontally in superview
+    ///
+    /// - Returns: Added layout constraint or nil if it has no superview
+    /// - Example: view.cuiCenterHorizontallyInSuperView
+    @discardableResult
+    func cuiCenterHorizontallyInSuperView() -> NSLayoutConstraint? {
+        
+        guard let superview = superview else {
+            return nil
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        return centerXAnchor.cuiDock(to: superview.centerXAnchor)
+    }
     
+    /// Centers view veritcally in superview
+    ///
+    /// - Returns: Added layout constraint or nil if it has no superview
+    /// - Example: view.cuiCenterVerticallyInSuperView
+    @discardableResult
+    func cuiCenterVerticallyInSuperView() -> NSLayoutConstraint? {
+        
+        guard let superview = superview else {
+            return nil
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        return centerYAnchor.cuiDock(to: superview.centerYAnchor)
+    }
 }
