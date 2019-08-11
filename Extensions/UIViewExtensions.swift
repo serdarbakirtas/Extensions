@@ -432,3 +432,22 @@ public extension UIView {
     }
 }
 
+// MARK: - Keyboard Handler
+
+extension UIViewController {
+    
+    /// Hide Keyboard When Tapped Arround
+    func cuiHideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+
