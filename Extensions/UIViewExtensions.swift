@@ -283,5 +283,25 @@ public extension UIView {
         )
     }
     
+    /// Centers view in superview
+    ///
+    /// - Returns: Added layout constraints array (centerX, centerY order) or nil if it has no superview
+    /// - Example: view.cuiCenterInSuperView()
+    @discardableResult
+    func cuiCenterInSuperview() -> [NSLayoutConstraint] {
+        
+        var constraints: [NSLayoutConstraint] = []
+        
+        if let centerXConstraint = cuiCenterHorizontallyInSuperView() {
+            constraints.append(centerXConstraint)
+        }
+        
+        if let centerYConstraint = cuiCenterVerticallyInSuperView() {
+            constraints.append(centerYConstraint)
+        }
+        
+        return constraints
+    }
+    
     
 }
