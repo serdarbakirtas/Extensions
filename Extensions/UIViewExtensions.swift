@@ -354,3 +354,29 @@ public extension UIView {
         return !cuiIsLayoutDirectionLeftToRight
     }
 }
+
+// MARK: - Shadow Helpers
+
+public extension UIView {
+    
+    /// Apply shadow to view
+    ///
+    /// - Parameters:
+    ///   - opacity: Opacity to be applied (defaults to 0)
+    ///   - radius: Radius to be applied (defaults to 3)
+    ///   - offset: Offset to be applied (defaults to .zero)
+    ///   - color: Color to be applied (defaults to black)
+    func cuiApplyShadow(
+        opacity: Float = 0.2,
+        radius: CGFloat = 5.0,
+        offset: CGSize = .zero,
+        color: CGColor = UIColor.black.cgColor
+        ) {
+        
+        layer.masksToBounds = false
+        layer.shadowColor = color
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offset
+        layer.shadowRadius = radius
+    }
+}
