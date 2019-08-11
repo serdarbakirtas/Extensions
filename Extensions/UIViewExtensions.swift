@@ -451,3 +451,33 @@ extension UIViewController {
 }
 
 
+public extension UIView {
+    
+    func createDarkBlursOnView() {
+        
+        let darkBlur = UIBlurEffect(style: .dark)
+        let darkBlurView = UIVisualEffectView(effect: darkBlur)
+        addSubview(darkBlurView)
+
+        darkBlurView.frame = bounds
+
+        let darkVibrancyView = vibrancyEffectView(forBlurEffectView: darkBlurView)
+        darkBlurView.contentView.addSubview(darkVibrancyView)
+    }
+    
+    fileprivate func vibrancyEffectView(forBlurEffectView blurEffectView:UIVisualEffectView) -> UIVisualEffectView {
+        let vibrancy = UIVibrancyEffect(blurEffect: blurEffectView.effect as! UIBlurEffect)
+        let vibrancyView = UIVisualEffectView(effect: vibrancy)
+        vibrancyView.frame = blurEffectView.bounds
+        vibrancyView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return vibrancyView
+    }
+    
+    func removeBlur() {
+        for view in self.subviews {
+            if let view = view as? UIVisualEffectView {
+                view.removeFromSuperview()
+            }
+        }
+    }
+}
