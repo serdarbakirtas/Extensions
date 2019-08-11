@@ -216,4 +216,39 @@ public extension UIView {
             constant: constant
         )
     }
+    
+    /// Pins top anchor to superview's top anchor
+    ///
+    /// - Parameters:
+    ///   - constant: Constant to be applied between anchors
+    ///   - shouldRespectSafeArea: Whether safe area should be respected or not (defaults to true)
+    /// - Returns: Already activated `NSLayoutConstraint` instance or nil if view has no superview
+    @discardableResult
+    func cuiPinTopToSuperView(
+        constant: CGFloat = 0.0,
+        shouldRespectSafeArea: Bool = true
+        ) -> NSLayoutConstraint? {
+        
+        guard let superview = superview else {
+            return nil
+        }
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        guard #available(iOS 11.0, *),
+            superview.responds(to: #selector(getter: safeAreaLayoutGuide)) else {
+                
+                return topAnchor.cuiDock(
+                    to: superview.topAnchor,
+                    constant: constant
+                )
+        }
+        
+        return topAnchor.cuiDock(
+            to: shouldRespectSafeArea ? superview.safeAreaLayoutGuide.topAnchor : superview.topAnchor,
+            constant: constant
+        )
+    }
+    
+    
 }
