@@ -335,3 +335,22 @@ public extension UIView {
         return centerYAnchor.cuiDock(to: superview.centerYAnchor)
     }
 }
+
+// MARK: - Reusable
+
+extension UIView: Reusable {}
+
+// MARK: - Layout Direction Helpers
+
+public extension UIView {
+    
+    var cuiIsLayoutDirectionLeftToRight: Bool {
+        
+        return LocalizationManager.shared.language.isLeftToRight
+    }
+    
+    var cuiIsLayoutDirectionRightToLeft: Bool {
+        
+        return !cuiIsLayoutDirectionLeftToRight
+    }
+}
