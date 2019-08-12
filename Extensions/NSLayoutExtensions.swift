@@ -188,3 +188,69 @@ public extension NSLayoutXAxisAnchor {
         return cons
     }
 }
+
+public extension NSLayoutYAxisAnchor {
+    
+    /// Docks anchor to another one
+    ///
+    /// - Parameters:
+    ///   - anchor: Anchor to be dock
+    ///   - constant: Constant to be applied (defaults to 0)
+    ///   - priority: Priority of the constraint (defaults to required)
+    /// - Returns: Already activated NSLayoutConstraint instance
+    /// - Example: view1.bottomAnchor.cuiDock(to: view2.bottomAnchor, constant: CGFloat(30.0))
+    @discardableResult
+    func cuiDock(
+        to anchor: NSLayoutYAxisAnchor,
+        constant: CGFloat = CGFloat(0),
+        priority: UILayoutPriority = .required
+        ) -> NSLayoutConstraint {
+        
+        let cons = constraint(equalTo: anchor, constant: constant)
+        cons.priority = priority
+        cons.isActive = true
+        return cons
+    }
+    
+    /// Docks anchor to another one as less than or equal to
+    ///
+    /// - Parameters:
+    ///   - anchor: Anchor to be dock
+    ///   - constant: Constant to be applied (defaults to 0)
+    ///   - priority: Priority of the constraint (defaults to required)
+    /// - Returns: Already activated NSLayoutConstraint instance
+    /// - Example: view1.leadingAnchor.cuiDock(lessThanOrEqualTo: view2.trailingAnchor, constant: CGFloat(30.0))
+    @discardableResult
+    func cuiDock(
+        lessThanOrEqualTo anchor: NSLayoutYAxisAnchor,
+        constant: CGFloat = CGFloat(0),
+        priority: UILayoutPriority = .required
+        ) -> NSLayoutConstraint {
+        
+        let cons = constraint(lessThanOrEqualTo: anchor, constant: constant)
+        cons.priority = priority
+        cons.isActive = true
+        return cons
+    }
+    
+    /// Docks anchor to another one as greater than or equal to
+    ///
+    /// - Parameters:
+    ///   - anchor: Anchor to be dock
+    ///   - constant: Constant to be applied (defaults to 0)
+    ///   - priority: Priority of the constraint (defaults to required)
+    /// - Returns: Already activated NSLayoutConstraint instance
+    /// - Example: view1.leadingAnchor.cuiDock(greaterThanOrEqualTo: view2.trailingAnchor, constant: CGFloat(30.0))
+    @discardableResult
+    func cuiDock(
+        greaterThanOrEqualTo anchor: NSLayoutYAxisAnchor,
+        constant: CGFloat = CGFloat(0),
+        priority: UILayoutPriority = .required
+        ) -> NSLayoutConstraint {
+        
+        let cons = constraint(greaterThanOrEqualTo: anchor, constant: constant)
+        cons.priority = priority
+        cons.isActive = true
+        return cons
+    }
+}
