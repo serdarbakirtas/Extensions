@@ -41,5 +41,17 @@ public extension UINavigationController {
         }
     }
     
-    
+    func popViewController(
+        animated: Bool,
+        completion: (() -> Void)? = nil
+        ) {
+        
+        popViewController(animated: animated)
+        
+        if let coordinator = transitionCoordinator, animated {
+            coordinator.animate(alongsideTransition: nil) { _ in completion?() }
+        } else {
+            DispatchQueue.main.async { completion?() }
+        }
+    }
 }
