@@ -40,4 +40,23 @@ public extension NSLayoutDimension {
         return cons
     }
     
+    /// Sets dimension to a constant value as greater than or equal to
+    ///
+    /// - Parameters:
+    ///   - constant: Value to set
+    ///   - priority: Priority of the constraint (defaults to required)
+    /// - Returns: Already activated NSLayoutConstraint instance
+    /// - Example: view.widthAnchor.cuiSet(greaterThanOrEqualTo: CGFloat(50.0))
+    @discardableResult
+    func cuiSet(
+        greaterThanOrEqualTo constant: CGFloat,
+        priority: UILayoutPriority = .required
+        ) -> NSLayoutConstraint {
+        
+        let cons = constraint(greaterThanOrEqualToConstant: constant)
+        cons.priority = priority
+        cons.isActive = true
+        return cons
+    }
+    
 }
