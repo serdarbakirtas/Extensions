@@ -80,5 +80,26 @@ public extension NSLayoutDimension {
         return cons
     }
     
+    /// Sets dimension to another one with multiplier as less than or equal to
+    ///
+    /// - Parameters:
+    ///   - dimension: Dimension to set
+    ///   - multiplier: Multiplier to be applied (defaults to 1)
+    ///   - priority: Priority of the constraint (defaults to required)
+    /// - Returns: Already activated NSLayoutConstraint instance
+    /// - Example: view1.heightAnchor.cuiSet(lessThanOrEqualTo: view2.heightAnchor, multiplier: CGFloat(0.5))
+    @discardableResult
+    func cuiSet(
+        lessThanOrEqualTo dimension: NSLayoutDimension,
+        multiplier: CGFloat = CGFloat(1.0),
+        priority: UILayoutPriority = .required
+        ) -> NSLayoutConstraint {
+        
+        let cons = constraint(lessThanOrEqualTo: dimension, multiplier: multiplier)
+        cons.priority = priority
+        cons.isActive = true
+        return cons
+    }
+    
     
 }
