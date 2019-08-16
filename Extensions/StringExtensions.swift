@@ -1,4 +1,4 @@
-//import Foundation
+import Foundation
 
 extension String {
     func format(phoneNumber: String, shouldRemoveLastDigit: Bool = false) -> String {
