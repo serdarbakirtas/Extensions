@@ -24,6 +24,8 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let formattedDate = dateFormatter.string(from: date)
         
+        
+        // TODO - remove guard let
         let now = dateFormatter.date(from: formattedDate)
         guard let nowDate = now else { return Date() }
         return nowDate
