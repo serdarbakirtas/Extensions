@@ -40,6 +40,15 @@ public extension Array where Element: Hashable {
         return self.item(after: -position, of: item)
     }
 
+    /// Next item of the given item
+    ///
+    /// - Parameter item: item
+    /// - Returns: The next item if it's there, nil if index out of bounds
+    public func next(of item: Element) -> Element? {
+
+        return self.item(after: 1, of: item)
+    }
+
 }
 
 public extension Array {
