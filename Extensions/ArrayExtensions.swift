@@ -49,6 +49,14 @@ public extension Array where Element: Hashable {
         return self.item(after: 1, of: item)
     }
 
+    /// Previous item of the given item
+    ///
+    /// - Parameter item: Item
+    /// - Returns: The previous item if it's there, nil if index out of bounds
+    public func previous(of item: Element) -> Element? {
+
+        return self.item(before: 1, of: item)
+    }
 }
 
 public extension Array {
