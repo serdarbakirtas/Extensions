@@ -29,4 +29,26 @@ public extension Array where Element: Hashable {
         return nil
     }
 
+    /// Item that is sitting at given amount of index before of the given item
+    ///
+    /// - Parameters:
+    ///   - position: Index that will be substracted from the given item's index
+    ///   - item: Item
+    /// - Returns: The item if it's there, nil if index out of bounds
+    public func item(before position: Index, of item: Element) -> Element? {
+
+        return self.item(after: -position, of: item)
+    }
+
+}
+
+public extension Array {
+
+    /// Removes the given item (equatable) from the array
+    ///
+    /// - Parameter item: Item
+    public mutating func remove<T: Equatable>(_ item: T) {
+
+        self = filter { $0 as? T != item }
+    }
 }
